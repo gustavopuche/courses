@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{namespace} \PYG{n}{gray}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{class} \PYG{n+nc}{Image}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{nrows}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{// Number of rows and columns.}
+		\PYG{k+kt}{int} \PYG{o}{**}\PYG{n}{pixels}\PYG{p}{;}     \PYG{c+c1}{// Pointer to image pixels.}
+
+		\PYG{k+kt}{void} \PYG{n+nf}{reserveMemory}\PYG{p}{();}       \PYG{c+c1}{// Reserves memory.}
+		\PYG{k+kt}{void} \PYG{n+nf}{copy} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{// Copy I image over current image.}
+		\PYG{k+kt}{void} \PYG{n+nf}{freeMemory}\PYG{p}{();}          \PYG{c+c1}{// Frees memory.}
+
+	\PYG{k}{public}\PYG{o}{:}
+		\PYG{n}{Image}\PYG{p}{();}
+		\PYG{n}{Image}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{);} \PYG{c+c1}{// Fills pixels n x m with g value}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,14 @@
+// imageStruct.cpp
+
+#include<stdio.h>
+
+struct Image
+{
+	int     nrows, ncols; // Number of rows and columns.
+	int**   pixels;       // Pointer to image pixels.
+};
+
+int main()
+{
+	
+}

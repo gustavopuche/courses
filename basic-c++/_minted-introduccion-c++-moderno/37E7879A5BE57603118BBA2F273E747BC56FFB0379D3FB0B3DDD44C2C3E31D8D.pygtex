@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{bool}   \PYG{c+c1}{// Boolean. Valores posibles true y false}
+\PYG{k+kt}{char}   \PYG{c+c1}{// Carácter. Ejemplos: \PYGZsq{}a\PYGZsq{}, \PYGZsq{}z\PYGZsq{}, y \PYGZsq{}9\PYGZsq{}}
+\PYG{k+kt}{int}    \PYG{c+c1}{// Entero. Ejemplos \PYGZhy{}273, 42, y 1066}
+\PYG{k+kt}{double} \PYG{c+c1}{// Doble precisión. Número decimal por ejemplo:}
+       \PYG{c+c1}{// \PYGZhy{}273.15, 3.14, y 6.626e\PYGZhy{}34}
+       \PYG{c+c1}{// Enteros positivos como 0, 1, and 999}
+\end{Verbatim}

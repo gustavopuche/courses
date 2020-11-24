@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Pixel}\PYG{o}{**}   \PYG{n}{pixels}\PYG{p}{;}       \PYG{c+c1}{// Pointer to image pixels.}
+
+\PYG{n}{pixels} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Pixel}\PYG{o}{*}\PYG{p}{[}\PYG{n}{rows}\PYG{p}{];}
+\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{pixels}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Pixel}\PYG{p}{[}\PYG{n}{cols}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{copy}\PYG{p}{;}
+
+\PYG{n}{copy} \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{int}\PYG{o}{*}\PYG{p}{)}\PYG{n}{malloc}\PYG{p}{(}\PYG{n}{im}\PYG{p}{.}\PYG{n}{nrows}\PYG{o}{*}\PYG{n}{im}\PYG{p}{.}\PYG{n}{ncols}\PYG{o}{*}\PYG{k}{sizeof}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{));}
+\end{Verbatim}

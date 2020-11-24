@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.1)
+# Enable C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
+include(GNUInstallDirs)
+
+add_subdirectory(structures)
+add_subdirectory(classes)
+add_subdirectory(unions)
+add_subdirectory(enum)
+add_subdirectory(memory)
+add_subdirectory(modularity)
+add_subdirectory(modularity/namespaces)
+
+add_custom_target(runIs)
+add_custom_command( TARGET runIs
+	POST_BUILD COMMAND ./structures/imageStructure)
+add_custom_target(runIc)
+add_custom_command( TARGET runIc
+	POST_BUILD COMMAND ./classes/imageClass)
+add_custom_target(runIu)
+add_custom_command( TARGET runIu
+	POST_BUILD COMMAND ./unions/imageUnion)
+add_custom_target(runIm)
+add_custom_command( TARGET runIm
+	POST_BUILD COMMAND ./memory/imageMemory)
+add_custom_target(runImod)
+add_custom_command( TARGET runImod
+	POST_BUILD COMMAND ./modularity/imageModule)
+add_custom_target(runIns)
+add_custom_command( TARGET runIns
+	POST_BUILD COMMAND ./modularity/namespaces/imageNamespace)
+

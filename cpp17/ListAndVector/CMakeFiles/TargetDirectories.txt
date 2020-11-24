@@ -1,0 +1,4 @@
+/home/gustavo/dev/cpp17/ListAndVector/CMakeFiles/rebuild_cache.dir
+/home/gustavo/dev/cpp17/ListAndVector/CMakeFiles/edit_cache.dir
+/home/gustavo/dev/cpp17/ListAndVector/CMakeFiles/ListAndVector.dir
+/home/gustavo/dev/cpp17/ListAndVector/CMakeFiles/run.dir

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{union} \PYG{n}{Pixel}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{RGB} \PYG{n}{p}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{gray}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\PYG{k}{struct} \PYG{n}{Image}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int}       \PYG{n}{nrows}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{// Number of rows and columns.}
+	\PYG{n}{Pixel}\PYG{o}{**}   \PYG{n}{pixels}\PYG{p}{;}       \PYG{c+c1}{// Pointer to image pixels.}
+	\PYG{n}{Image}\PYG{p}{();}
+\PYG{p}{\PYGZcb{};}
+\PYG{p}{[...]}
+\PYG{n}{Image} \PYG{n}{im}\PYG{p}{;}
+\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{r} \PYG{o}{=} \PYG{l+m+mi}{180}\PYG{p}{;}
+\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{g} \PYG{o}{=} \PYG{l+m+mi}{50}\PYG{p}{;}
+\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{190}\PYG{p}{;}
+
+\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{6}\PYG{p}{].}\PYG{n}{gray} \PYG{o}{=} \PYG{l+m+mi}{250}\PYG{p}{;}
+\end{Verbatim}

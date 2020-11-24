@@ -1,0 +1,3 @@
+/home/gustavo/Documents/Work/courses/basic-c++/examples/structures/CMakeFiles/rebuild_cache.dir
+/home/gustavo/Documents/Work/courses/basic-c++/examples/structures/CMakeFiles/imageStructure.dir
+/home/gustavo/Documents/Work/courses/basic-c++/examples/structures/CMakeFiles/edit_cache.dir

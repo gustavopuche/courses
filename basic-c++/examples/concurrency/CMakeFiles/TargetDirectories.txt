@@ -1,0 +1,4 @@
+/home/gustavo/Documents/Work/courses/basic-c++/examples/concurrency/CMakeFiles/rebuild_cache.dir
+/home/gustavo/Documents/Work/courses/basic-c++/examples/concurrency/CMakeFiles/run.dir
+/home/gustavo/Documents/Work/courses/basic-c++/examples/concurrency/CMakeFiles/edit_cache.dir
+/home/gustavo/Documents/Work/courses/basic-c++/examples/concurrency/CMakeFiles/imageConcurrency.dir

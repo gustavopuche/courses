@@ -1,0 +1,5 @@
+/home/gustavo/dev/cpp20/CMakeFiles/rebuild_cache.dir
+/home/gustavo/dev/cpp20/CMakeFiles/edit_cache.dir
+/home/gustavo/dev/cpp20/CMakeFiles/test.dir
+/home/gustavo/dev/cpp20/CMakeFiles/run.dir
+/home/gustavo/dev/cpp20/CMakeFiles/trial.dir

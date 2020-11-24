@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct} \PYG{n}{Image}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int}     \PYG{n}{nrows}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{// Number of rows and columns.}
+	\PYG{k+kt}{int}\PYG{o}{**}   \PYG{n}{pixels}\PYG{p}{;}       \PYG{c+c1}{// Pointer to image pixels.}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

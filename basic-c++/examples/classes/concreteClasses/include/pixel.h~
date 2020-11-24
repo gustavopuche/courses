@@ -1,0 +1,35 @@
+// pixel.h
+
+#include<stdio.h>
+#include <iostream>
+
+using namespace std;
+
+
+namespace rgb
+{
+public:
+	class Pixel
+	{
+		int r,g,b; // Pixel components.
+		
+		Pixel()
+			{
+				r = g = b = 0;
+			}
+		
+		Pixel(int r, int g, int b) // Fills pixel with rgb value.
+			{
+				this.r = r;
+				this.g = g;
+				this.b = b;
+			}
+				
+		const Pixel operator+ (const Pixel& p) // Add 2 Pixels.
+			{
+				r = r + p.r;
+				g = g + p.g;
+				b = b + p.g;
+			}
+	};
+}

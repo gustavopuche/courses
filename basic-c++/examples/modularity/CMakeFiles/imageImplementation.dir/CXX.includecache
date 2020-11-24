@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gustavo/Documents/Work/courses/basic-c++/examples/modularity/imageImplementation.cpp
+stdio.h
+-
+stdlib.h
+-
+iostream
+-
+imageInterface.h
+-
+
+modularity/include/imageInterface.h
+stdio.h
+-
+iostream
+-
+

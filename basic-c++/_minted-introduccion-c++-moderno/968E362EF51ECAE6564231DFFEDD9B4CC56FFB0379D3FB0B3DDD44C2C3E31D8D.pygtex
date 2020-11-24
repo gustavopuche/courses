@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{bool}   \PYG{c+c1}{// Boolean, possible values are true and false}
+\PYG{k+kt}{char}   \PYG{c+c1}{// character, for example, \PYGZsq{}a\PYGZsq{}, \PYGZsq{}z\PYGZsq{}, and \PYGZsq{}9\PYGZsq{}}
+\PYG{k+kt}{int}    \PYG{c+c1}{// integer, for example, \PYGZhy{}273, 42, and 1066}
+\PYG{k+kt}{double} \PYG{c+c1}{// double\PYGZhy{}precision floating\PYGZhy{}point number,}
+       \PYG{c+c1}{// for example, \PYGZhy{}273.15, 3.14, and 6.626e\PYGZhy{}34 unsigned}
+	     \PYG{c+c1}{// non\PYGZhy{}negative integer, for example, 0, 1, and 999}
+       \PYG{c+c1}{// (use for bitwise logical operations)}
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Image}
+\PYG{p}{\PYGZob{}}
+  \PYG{p}{[...]}
+
+ \PYG{k}{private}\PYG{o}{:}
+  \PYG{k+kt}{int} \PYG{n}{nrows}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{// Number of rows and columns.}
+  \PYG{k+kt}{int} \PYG{o}{**}\PYG{n}{pixels}\PYG{p}{;}     \PYG{c+c1}{// Pointer to image pixels.}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{reserve}\PYG{p}{();}             \PYG{c+c1}{// Reserves memory.}
+  \PYG{k+kt}{void} \PYG{n+nf}{copy} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{// Copy I image over current image.}
+  \PYG{k+kt}{void} \PYG{n+nf}{delete}\PYG{p}{();}              \PYG{c+c1}{// Frees memory.}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

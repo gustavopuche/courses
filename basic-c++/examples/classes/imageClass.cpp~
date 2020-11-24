@@ -1,0 +1,35 @@
+// imageClass.cpp
+
+#include<stdio.h>
+#include <iostream>
+
+using namespace std;
+
+class Image
+{
+ public:
+  Image();
+  Image(int n, int m, int g); // Fills pixels n x m with g value
+  Image(const Image& I);      // Copy Constructor
+  ~Image() ;                  // Destructor
+
+  const Image& operator= (const Image&); // Assign operator
+
+  int  getNrows();  // Rows
+  int  getNcols();  // Columns
+  int  getGray(int x, int y) const;  // Gray pixel value (x,y).
+  void setGray(int x, int y, int g); // Set pixel value (x,y).
+
+ private:
+  int nrows, ncols; // Number of rows and columns.
+  int **pixels;     // Pointer to image pixels.
+
+  void reserve();             // Reserves memory.
+  void copy (const Image& I); // Copy I image over current image.
+  void delete();              // Frees memory.
+};
+
+int main()
+{
+	cout << "imageClass is finnished." << endl;
+}

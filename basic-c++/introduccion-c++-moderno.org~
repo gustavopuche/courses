@@ -1,0 +1,816 @@
+#+TITLE: Introducción al c++ moderno
+#+AUTHOR: Gustavo Puche
+#+OPTIONS: H:2 toc:t num:t
+#+LATEX_CLASS: beamer
+# #+LATEX_CLASS_OPTIONS: [handout]
+#+LATEX_CLASS_OPTIONS: [aspectratio=169,presentation]
+# #+LATEX_HEADER: \usepackage{pgfpages}
+# #+LATEX_HEADER: \mode<handout>{\setbeameroption{show notes} \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]}
+#+BEAMER_THEME: Madrid
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col)
+#+LANGUAGE:  es
+#+LATEX_HEADER: \usepackage[spanish]{babel}
+#+OPTIONS: tex:imagemagick
+#+LaTeX_HEADER: \usepackage{tikz}
+#+LaTeX_HEADER: \usepackage{minted}
+#+LaTeX_HEADER: \setmonofont{Iconsolata}
+* Introducción
+** Introducción
+- Objetivos
+- Motivación
+- Bases del lenguaje
+- Definición de tipos
+- Modularidad
+- Gestión de memoria
+- Clases
+- Operaciones esenciales
+- Librería estándar
+- Uso de lambdas
+- Programación genérica (templates)
+- Conclusiones
+** Objetivos
+Dar las bases para la programación moderna en C++11 y superiores.
+** Motivación
+- Gran demanda de proyectos en esta tecnología
+- Lenguaje de alto rendimiento
+- Lenguaje moderno y actualizado
+- Programación funcional
+- Programación genérica
+* Bases del Lenguaje
+** Bases del Lenguaje
+- Tipos básico
+- Sentencias
+** Tipos básicos
+- Tipos Básico
+- Punteros
+- Referencias
+- cons
+- consexpr
+** Tipos básicos
+#+BEGIN_SRC c++
+bool   // Boolean. Valores posibles true y false
+char   // Carácter. Ejemplos: 'a', 'z', y '9'
+int    // Entero. Ejemplos: -273, 42, y 1066
+double // Número decimal. Ejemplos:-273.15, 3.14, y 6.626e-34
+       // Enteros positivos. Ejemplos: 0, 1, y 999
+#+END_SRC
+*** Tamaño de los tipos en bytes
+    :PROPERTIES:
+    :END:
+[[./img/type-size.png]]
+** Tipos básicos
+- Arrays, punteros y referencias
+[[./img/pointer-paint.png]]
+** Tipos básicos
+- Punteros
+- Referencias
+#+BEGIN_SRC c++
+int num = 3;
+int p1* = &num;
+
+int v[10] = {0,1,2,3,4,5,6,7,8,9};
+
+int p* = &v[3];
+#+END_SRC
+** Tipos básicos
+Las constantes en =C++= son de 2 tipos:
+*** ~const~
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+	- Prohíbe que se modifique una variables.
+	- Es usado generalmente en la definición de interfaces
+	- Puede ser calculado en tiempo de ejecución.
+*** ~constexpr~
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+	- Calculado en tiempo de compilación.
+	- El compilador evalúa la expresión y la sustituye por su valor.
+** cons y consexpr
+#+BEGIN_SRC c++
+constexpr double square(double x) { return x*x;}
+double sum(const vector<double>&); // sum no puede modificar su argumento.
+
+vector<double> v{1.2,3.4,4.5}; // v no es una constante.
+
+const double s1 = sum(v); // Correcto.
+constexpr double s2 = sum(v) // Error: sum(v) no es una expresión constante.
+
+#+END_SRC
+** Sentencias
+- Bloques
+	- if
+	- switch
+- Bucles
+	- while
+	- for 
+** Ejemplo de bloque de código
+#+BEGIN_SRC c++
+void BubbleSort(int *A, int n, bool (*fptr)(int,int))
+{
+	int i,j,temp;
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n - 1; j++)
+		{
+			if (fptr(A[j],A[j+1])) // true if SWAP is needed.
+			{
+				temp = A[j];
+				A[j] = A[j+1];
+				A[j+1]= temp;
+			}
+		}
+}
+#+END_SRC	
+* Definición de tipos
+** Definición de tipos
+- Estructuras
+- Clases
+- Uniones
+- Enumeraciones
+
+** Definición de tipos
+*** Estructuras
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- Las estructuras mantienen separados los datos de las operaciones.
+
+- Por defecto los miembros de una estructura son de acceso público.
+*** Clases
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- Las clases agrupan los datos y las operaciones sobre estos.
+
+- Esto permite proteger los datos y las operaciones de los usuarios.
+
+- Por defecto los miembros de una clase son de acceso privado.
+** Estructuras
+#+BEGIN_SRC c++
+struct Image
+{
+	int     nrows, ncols; // Number of rows and columns.
+	int**   pixels;       // Pointer to image pixels.
+};
+#+END_SRC
+
+** Clases
+#+BEGIN_SRC c++
+class Image
+{
+ public:
+  Image();
+  Image(int n, int m, int g); // Fills pixels n x m with g value
+  Image(const Image& I);      // Copy Constructor
+  ~Image() ;                  // Destructor
+
+  const Image& operator= (const Image&); // Assign operator
+
+  int  getNrows();  // Rows
+  int  getNcols();  // Columns
+  int  getGray(int x, int y) const;  // Gray pixel value (x,y).
+  void setGray(int x, int y, int g); // Set pixel value (x,y).
+
+	[...]
+};
+#+END_SRC
+** Clases
+#+BEGIN_SRC c++
+class Image
+{
+  [...]
+
+ private:
+  int nrows, ncols; // Number of rows and columns.
+  int **pixels;     // Pointer to image pixels.
+
+  void reserveMemory();       // Reserves memory.
+  void copy (const Image& I); // Copy I image over current image.
+  void freeMemory();          // Frees memory.
+};
+#+END_SRC
+** Uniones
+*** Unión
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+Es una estructura en la que sus elementos ocupan la misma posición de memoria.
+
+Solo se puede escoger uno de los elementos a la vez.
+**** variant                                                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+La solución a los errores derivado del colapso de direcciones de
+memoria de los elementos es mejor usar =variant=.
+** Uniones
+#+BEGIN_SRC c++
+union Pixel
+{
+	RGB p;
+	int gray;
+};
+struct Image
+{
+	int       nrows, ncols; // Number of rows and columns.
+	Pixel**   pixels;       // Pointer to image pixels.
+	Image();
+};
+[...]
+Image im;
+im.pixels[5][5].p.r = 180;
+im.pixels[5][5].p.g = 50;
+im.pixels[5][5].p.b = 190;
+	
+im.pixels[5][6].gray = 250;
+#+END_SRC
+** Enumeraciones
+*** Enum
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+Permite definir un conjunto de valores que enumeran una cualidad.
+
+Por ejemplo podemos definir color como rojo, verde y azul.
+*** 
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+#+BEGIN_SRC c++
+enum color {rojo,verde, azul};
+#+END_SRC
+**** Colisión de nombres
+    :PROPERTIES:
+    :BEAMER_ENV: note
+    :END:
+Ejemplo que muestra que ocurre cuando el nombre de un elemento está
+presente en 2 enumeraciones.
+
+Solución: enumName::enumElem.
+** Enumeraciones
+#+BEGIN_SRC c++
+enum ImageType {grayscale, color};
+[...]
+int main()
+{
+	Image im{color};
+
+	if (im.type == color)
+	{
+		im.pixels[5][5].p.r = 180;
+		im.pixels[5][5].p.g = 50;
+		im.pixels[5][5].p.b = 190;
+	}
+	else
+	{
+		im.pixels[5][5].gray = 250;
+	}
+}
+#+END_SRC
+
+* Modularidad
+** Modularidad
+*** Programa C++
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+Formado por diferentes partes separadas entre sí.
+- Interfaz
+- Implementación
+** Modularidad
+*** Interfaces
+Se suelen definir en los archivos de cabecera con extensión =.h=
+
+Representan las declaraciones que contienen todo lo
+necesario para usar una función o tipo.
+
+** Interfaz
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+#+BEGIN_SRC c++
+class Image
+{
+	int nrows, ncols; // Number of rows and columns.
+  int **pixels;     // Pointer to image pixels.
+
+  void reserveMemory();       // Reserves memory.
+  void copy (const Image& I); // Copy I image over current image.
+  void freeMemory();          // Frees memory.
+
+ public:
+  Image();
+  Image(int n, int m, int g); // Fills pixels n x m with g value
+  Image(const Image& I);      // Copy Constructor
+  ~Image();                   // Destructor
+
+  const Image& operator= (const Image&); // Assign operator
+
+  int  getNrows();  // Rows
+  int  getNcols();  // Columns
+  int  getGray(int x, int y) const;  // Gray pixel value (x,y).
+  void setGray(int x, int y, int g); // Set pixel value (x,y).
+
+	Image operator+ (const Image& I); //Add Images
+  Image operator- (const Image& I); //Sub Images
+  Image operator! ();   // Invierte la Image
+};
+#+END_SRC
+** Modularidad
+*** Implementación
+Se definen en uno o varios ficheros con extensión =.cpp=
+
+Representan las definiciones de los tipos o funciones.
+
+** Implementación
+#+BEGIN_SRC c++
+#include<imageInterface.h>
+using namespace std;
+	
+Image::Image(int rows, int cols, int g)
+{
+	nrows = rows;
+	ncols = cols;
+	
+	pixels = new int*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		pixels[i] = new int[cols];
+
+		for (int j = 0; j < cols; j++)
+		{
+			pixels[i][j] = g;
+		}
+	}
+}
+#+END_SRC
+** Modularidad
+*** Compilación separada
+- Los fichero .cpp se compilan por separado generando fichero objeto
+  (.o o .obj).
+- Esta compilación separada permite modificar una clase sin necesidad
+  de recompilar el programa entero.
+** Compilación separada
+#+BEGIN_SRC c++
+// imageModule.cpp
+
+#include<imageInterface.h>
+
+using namespace std;
+
+int main()
+{
+  Image im{10,10,200};
+    
+  cout << "imageImplementation is finnished." << endl;
+}
+#+END_SRC
+** Compilación separada
+*** ¡Atención! :B_alertblock:
+		:PROPERTIES:
+		:BEAMER_env: alertblock
+		:END:
+- Un cambio en un fichero de implementación .cpp implicará recompilar
+  el fichero y realizar el enlazado.
+- Un cambio en un fichero de interfaz .h implicará recompilar todos
+  los ficheros .cpp que la incluyen.
+**** variant                                                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+- Preparar una imagen con unos ladrillos que representan el código
+  objeto resultado del compilador y la argamasa que es la unión de los
+  diferentes bloques que realiza el enlazador (linker).
+- La imagen de base ya está en la carpeta img.
+** Modularidad
+*** Namespaces
+    :PROPERTIES:
+    :BEAMER_COL: 0.28
+    :BEAMER_ENV: block
+    :END:
+- Ofrecen un nivel superior de organización al de las clases y las
+  enumeraciones.
+- Permiten evitar conflictos de nombres.
+*** 
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :END:
+[[./img/namespaces.png]]
+
+** Namespaces
+#+BEGIN_SRC c++
+namespace gray
+{
+	class Image
+	{
+		int nrows, ncols; // Number of rows and columns.
+		int **pixels;     // Pointer to image pixels.
+		
+		void reserveMemory();       // Reserves memory.
+		void copy (const Image& I); // Copy I image over current image.
+		void freeMemory();          // Frees memory.
+		
+	public:
+		Image();
+		Image(int n, int m, int g); // Fills pixels n x m with g value
+}
+#+END_SRC
+** Namespaces
+#+BEGIN_SRC c++
+namespace rgb
+{
+	struct RGB
+	{
+		int r,g,b;
+	};
+		
+	class Image
+	{
+		int nrows, ncols; // Number of rows and columns.
+		RGB **pixels;     // Pointer to image pixels.
+		
+		void reserveMemory();       // Reserves memory.
+		void copy (const Image& I); // Copy I image over current image.
+		void freeMemory();          // Frees memory.
+		
+	public:
+		Image();
+		Image(int n, int m, int r, int g, int b); // Fills pixels n x m with rgb value
+}
+#+END_SRC
+** Namespaces
+#+BEGIN_SRC c++
+gray::Image::Image(int rows, int cols, int g)
+{
+ [...]
+}
+rgb::Image::Image(int rows, int cols, int r, int g, int b)
+{
+ [...]
+}
+#+END_SRC
+
+* Gestión de memoria
+** Gestión de memoria
+*** Herencia de C
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :END:
+- C++ hereda de C un control fino de la memoria dinámica usada por el programa.
+- El sistema operativo divide la memoria de programa en bloques.
+*** 
+    :PROPERTIES:
+    :BEAMER_COL: 0.28
+    :END:
+[[./img/heap-stack-color.png]]
+** Gestión de memoria
+*** Memoria de programa
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :BEAMER_COL: 0.48
+    :END:
+- Code (Text): Área para el código máquina del programa.
+- Static/Global: Área para las variables globales del programa.
+- Stack: Área para las variables locales y la pila de programa.
+	- El tamaño de esta área es fijo, si se supera se produce el error
+    =Stack Overflow=.
+- Heap (Free Store): Área de memoria dinámica.
+	- El tamaño de esta área es virtualmente la memoria del equipo.
+*** 
+    :PROPERTIES:
+    :BEAMER_COL: 0.28
+    :END:
+[[./img/heap-stack-color.png]]
+** Gestión de memoria dinámica
+*** Herencia de C
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- malloc
+- free
+- calloc
+- realloc
+*** C++
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+- new
+- delete
+** Gestión de memoria dinámica
+#+BEGIN_SRC c++
+Pixel**   pixels;       // Pointer to image pixels.
+
+pixels = new Pixel*[rows];
+for (int i=0;i<10;i++)
+{
+	pixels[i] = new Pixel[cols];
+}		
+
+int * copy;
+
+copy = (int*)malloc(im.nrows*im.ncols*sizeof(int));
+#+END_SRC
+* Clases
+** Clases
+*** Definición
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+Tipo definido por el usario para representar un concepto.
+*** Principales cualidades
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Agrupan los datos y las operaciones sobre estos.
+- Proteger los datos y las operaciones de usuarios maintencionados.
+	- Por defecto, sus miembros son de acceso privado.
+- Permiten sobrecargar las operaciones para diferente dato de entrada.
+- Permiten derivar typos más complejos que heredan sus características básicas.
+** Clases
+*** Tipos de clases
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Clases concretas
+- Clases abstractas
+- Clases en las jerarquía de clases
+** Clases concretas (Tipos concretos)
+- En C++ todo son clases por ser un lenguaje orientado a objetos.
+- Las clases concretas son similires a los tipos básicos suministrados por las librerías básicas de C++.
+- Su representación es parte de su definición, lo que permite que las implementaciones sean eficientes en tiempo y espacio.
+*** Características
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Instancia sus datos en la memoria estática (stack).
+- No usa punteros.
+- Inicializa automáticamente los objetos.
+- Copia y muebe objetos.
+** Clases Concretas (Tipos Concretos)
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+#+BEGIN_SRC c++
+// pixel.h
+#include<stdio.h>
+#include <iostream>
+
+using namespace std;
+
+namespace rgb
+{
+	class Pixel
+	{
+		int r,g,b; // Pixel components.
+	public:		
+		Pixel(){
+			r = g = b = 0;
+		}
+		
+		Pixel(int r, int g, int b){ // Fills pixel with rgb value.
+			this->r = r;
+			this->g = g;
+			this->b = b;
+		}
+				
+		Pixel operator+(const Pixel& p){ // Add 2 Pixels.
+			Pixel res;
+			res.r = r + p.r; // Add pixel components
+			res.g = g + p.g;
+			res.b = b + p.b;
+			return res; // and return the result.
+		}
+
+		int getR() const { return r;}
+		int getG() const { return g;}
+		int getB() const { return b;}
+	};
+}
+#+END_SRC
+** Clases Abstractas (Tipos Abstractos)
+- En C++ todo son clases por ser un lenguaje orientado a objetos.
+- Las clases abstractas o tipos abstractos aislan completamente el
+  usuario de los detalles de implementación.
+- Las clases abstractas definen interfaces.
+*** Características
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- No puede contener variables de clase.
+- Instancia sus datos en la memoria dinámica (free store).
+- Está compuesta por métodos abstractos.
+	- Una clase deribada debe implementar los métodos abstractos de su clase padre.
+- No se puede instanciar un objeto de un tipo abstracto.
+** Clses Abstractas (Tipos Abstractos)
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+#+BEGIN_SRC c++
+class AbstractPixel
+{
+public:
+	virtual void set(int value) = 0; // Pure virtual.
+};
+
+class AbstractImage
+{
+public:
+	virtual AbstractPixel& getPixel(int x, int y) = 0; // Pure virtual.
+	virtual void setPixel(int x, int y, const AbstractPixel& pixel) = 0; // Pure virtual.
+	virtual int getRows() = 0; // Pure virtual.
+	virtual int getCols() = 0; // Pure virtual.
+};
+
+class AbstractImageOperations
+{
+public:
+	virtual void filter(const AbstractImage& image) = 0;// Pure virtual.
+};
+#+END_SRC
+**** Ejemplo                                                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+Clase ImageAbstract
+** Jerarquía de Clases
+Las clases pueden tomar funcionalidades de otras clase por medio de la herencia.
+*** Tipos de Herencia
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Simple
+	- Se hereda la funcionalidad de una única clase.
+- Múltiple
+	- Se heredan las funcionalidades de múltiples clases.
+** Herencia Simple
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+#+BEGIN_SRC c++
+class Pixel : public AbstractPixel
+{
+	int r,g,b; // Pixel components.
+public:		
+	Pixel(){
+		r = g = b = 0;
+	}
+			
+	Pixel(int r, int g, int b){ // Fills pixel with rgb value.
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
+
+	void set(int value) override{ // Implement AbstractPixel interface.
+		r = g = b = value;
+	}
+
+	void set(int r, int g, int b){
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
+			
+	Pixel operator+(const Pixel& p){ // Add 2 Pixels.
+		Pixel res;
+		res.r = r + p.r; // Add pixel components
+		res.g = g + p.g;
+		res.b = b + p.b;
+		return res; // and return the result.
+	}
+
+	int getR() const { return r;}
+	int getG() const { return g;}
+	int getB() const { return b;}
+};
+#+END_SRC
+**** Ejemplo                                                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+Clase Image hereda de ImageAbstract
+** Herencia Múltiple
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+#+BEGIN_SRC c++
+class Image : public AbstractImage, public AbstractImageOperations
+{
+	int rows, cols;
+	Pixel **pixels;
+public:
+	Image();
+	Image(int n, int m, int r, int g, int b); // Fills pixels n x m with rgb value
+	Image(const Image& I);      // Copy Constructor
+	~Image();                   // Destructor
+	
+	const Image& operator= (const Image&); // Assign operator
+	
+	int  getNrows();  // Rows
+	int  getNcols();  // Columns
+	
+	Image operator+ (const Image& I); //Add Images
+	Image operator- (const Image& I); //Sub Images
+	Image operator! ();   // Invierte la Image
+	
+	// AbstractImage methods.
+	AbstractPixel& getPixel(int x, int y) override;
+	void setPixel(int x, int y, const AbstractPixel& pixel) override;
+	int getRows() override{
+		return rows;
+	}
+	int getCols() override{
+		return cols;
+	}
+	
+	// AbstractImageOperations methods
+	void filter(const AbstractImage& image) override;
+};
+#+END_SRC
+**** Ejemplo                                                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+Clase Image hereda de ImageAbstract e ImageRGB
+Pequeño diagrama de herencia como el del libro.
+** Funciones Virtuales y Virtuales Puras.
+*** Virtuales
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Permite el poliformismo
+- Se definen en la clase base y se pueden redefinir en las clases derivadas.
+*** Virtuales puras
+    :PROPERTIES:
+    :BEAMER_ENV: block
+    :END:
+- Se declaran en la clase base y se marcan con = 0.
+- Es obligatoria la definición en las clases derivadas.
+*** 
+#+BEGIN_SRC c++
+class AbstractImage
+{
+public:
+	virtual AbstractPixel& getPixel(int x, int y) = 0; // Pure virtual.
+	virtual void setPixel(int x, int y, const AbstractPixel& pixel) = 0; // Pure virtual.
+	virtual int getRows() = 0; // Pure virtual.
+	virtual int getCols() = 0; // Pure virtual.
+};
+#+END_SRC
+* Operaciones esenciales
+** Operaciones esenciales
+* Librería estándar
+** Librería estándar
+* Uso de lambdas
+** Uso de lambdas
+* Programación genérica
+** Programación genérica
+* Conclusiones
+** Conclusiones
+* Proyecto
+** Proyecto
+*** Editor de imágenes
+		- Incrustar imagen en otra
+		- Fundir imagen con otra
+		- Eliminar objetos de una imagen
+		- Extraer un trozo de una imagen
+* 
+** 
+** Other stuff
+*** Gracias a Gustavo Puche                                        :B_block:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+    for the first viable Beamer setup in Org
+*** Gracias a alguien más                                           :B_block:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ACT: <2->
+    :BEAMER_ENV: block
+    :END:
+    for contributing to the discussion
+**** This will be formatted as a beamer note                         :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+** Frame 2 (where we will not use columns)
+*** Request
+    Please test this stuff!
+		
+*** Col left                                                          :BMCOL:
+		:PROPERTIES:
+		:BEAMER_col: 0.4
+		:END:
+**** Círculo
+\begin{tikzpicture}
+\draw (4,4) circle(2cm);
+\end{tikzpicture}

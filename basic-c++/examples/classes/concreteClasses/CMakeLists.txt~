@@ -1,0 +1,5 @@
+project( pixelClass )
+
+file( GLOB sources *.cpp )
+
+add_executable( pixelClass ${sources} )

@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/abstractAndIneritance.dir/AbstractInheritanceMain.cpp.o CMakeFiles/abstractAndIneritance.dir/abstractAndInheritance.cpp.o  -o abstractAndIneritance 

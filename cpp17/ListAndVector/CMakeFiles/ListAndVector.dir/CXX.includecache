@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gustavo/dev/cpp17/ListAndVector/ListAndVector.cpp
+chrono
+-
+iostream
+-
+vector
+-
+list
+-
+

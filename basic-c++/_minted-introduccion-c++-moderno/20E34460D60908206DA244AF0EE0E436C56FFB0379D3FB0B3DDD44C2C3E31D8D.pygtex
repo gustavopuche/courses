@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct} \PYG{n}{vector}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int}     \PYG{n}{sz}\PYG{p}{;}   \PYG{c+c1}{// Number of elements}
+	\PYG{k+kt}{double}\PYG{o}{*} \PYG{n}{elem}\PYG{p}{;} \PYG{c+c1}{// Pointer to elements}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n+nf}{BubbleSort}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{A}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{bool} \PYG{p}{(}\PYG{o}{*}\PYG{n}{fptr}\PYG{p}{)(}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{))}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{temp}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+		\PYG{k}{for} \PYG{p}{(}\PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)}
+		\PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{fptr}\PYG{p}{(}\PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{p}{],}\PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]))} \PYG{c+c1}{// true if SWAP is needed.}
+			\PYG{p}{\PYGZob{}}
+				\PYG{n}{temp} \PYG{o}{=} \PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+				\PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{];}
+				\PYG{n}{A}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=} \PYG{n}{temp}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,941 @@
+% Created 2020-08-31 lun 09:22
+% Intended LaTeX compiler: pdflatex
+\documentclass[aspectratio=169,presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[newfloat]{minted}
+\usepackage[spanish]{babel}
+\usepackage{tikz}
+\usepackage{minted}
+\setmonofont{Iconsolata}
+\usetheme{Madrid}
+\author{Gustavo Puche}
+\date{\today}
+\title{Introducción al c++ moderno}
+\hypersetup{
+ pdfauthor={Gustavo Puche},
+ pdftitle={Introducción al c++ moderno},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.0.50 (Org mode 9.1.9)}, 
+ pdflang={Spanish}}
+\begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Introducción}
+\label{sec:orgc2ea72e}
+\begin{frame}[label={sec:org8ce839a}]{Introducción}
+\begin{itemize}
+\item Objetivos
+\item Motivación
+\item Bases del lenguaje
+\item Definición de tipos
+\item Modularidad
+\item Gestión de memoria
+\item Clases
+\item Operaciones esenciales
+\item Librería estándar
+\item Uso de lambdas
+\item Programación genérica (templates)
+\item Conclusiones
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org5529a25}]{Objetivos}
+Dar las bases para la programación moderna en C++11 y superiores.
+\end{frame}
+\begin{frame}[label={sec:org669f25b}]{Motivación}
+\begin{itemize}
+\item Gran demanda de proyectos en esta tecnología
+\item Lenguaje de alto rendimiento
+\item Lenguaje moderno y actualizado
+\item Programación funcional
+\item Programación genérica
+\end{itemize}
+\end{frame}
+\section{Bases del Lenguaje}
+\label{sec:orge2fb43d}
+\begin{frame}[label={sec:org6b87550}]{Bases del Lenguaje}
+\begin{itemize}
+\item Tipos básico
+\item Sentencias
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org5340a92}]{Tipos básicos}
+\begin{itemize}
+\item Tipos Básico
+\item Punteros
+\item Referencias
+\item cons
+\item consexpr
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label={sec:org859222c}]{Tipos básicos}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+bool   // Boolean. Valores posibles true y false
+char   // Carácter. Ejemplos: 'a', 'z', y '9'
+int    // Entero. Ejemplos: -273, 42, y 1066
+double // Número decimal. Ejemplos:-273.15, 3.14, y 6.626e-34
+       // Enteros positivos. Ejemplos: 0, 1, y 999
+\end{minted}
+\begin{block}{Tamaño de los tipos en bytes}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./img/type-size.png}
+\end{center}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgb9a3745}]{Tipos básicos}
+\begin{itemize}
+\item Arrays, punteros y referencias
+\end{itemize}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./img/pointer-paint.png}
+\end{center}
+\end{frame}
+\begin{frame}[fragile,label={sec:orga3a70ce}]{Tipos básicos}
+ \begin{itemize}
+\item Punteros
+\item Referencias
+\end{itemize}
+\begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+int num = 3;
+int p1* = &num;
+
+int v[10] = {0,1,2,3,4,5,6,7,8,9};
+
+int p* = &v[3];
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:orge311fde}]{Tipos básicos}
+ Las constantes en \texttt{C++} son de 2 tipos:
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{\texttt{const}}
+\begin{itemize}
+\item Prohíbe que se modifique una variables.
+\item Es usado generalmente en la definición de interfaces
+\item Puede ser calculado en tiempo de ejecución.
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\columnwidth}
+\begin{block}{\texttt{constexpr}}
+\begin{itemize}
+\item Calculado en tiempo de compilación.
+\item El compilador evalúa la expresión y la sustituye por su valor.
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label={sec:org14c6c79}]{cons y consexpr}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+constexpr double square(double x) { return x*x;}
+double sum(const vector<double>&); // sum no puede modificar su argumento.
+
+vector<double> v{1.2,3.4,4.5}; // v no es una constante.
+
+const double s1 = sum(v); // Correcto.
+constexpr double s2 = sum(v) // Error: sum(v) no es una expresión constante.
+
+\end{minted}
+\end{frame}
+\begin{frame}[label={sec:org8a6cf32}]{Sentencias}
+\begin{itemize}
+\item Bloques
+\begin{itemize}
+\item if
+\item switch
+\end{itemize}
+\item Bucles
+\begin{itemize}
+\item while
+\item for
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label={sec:org2e8693d}]{Ejemplo de bloque de código}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+void BubbleSort(int *A, int n, bool (*fptr)(int,int))
+{
+	int i,j,temp;
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n - 1; j++)
+		{
+			if (fptr(A[j],A[j+1])) // true if SWAP is needed.
+			{
+				temp = A[j];
+				A[j] = A[j+1];
+				A[j+1]= temp;
+			}
+		}
+}
+\end{minted}
+\end{frame}
+\section{Definición de tipos}
+\label{sec:org5fa590f}
+\begin{frame}[label={sec:orgb57f30d}]{Definición de tipos}
+\begin{itemize}
+\item Estructuras
+\item Clases
+\item Uniones
+\item Enumeraciones
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org2151612}]{Definición de tipos}
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Estructuras}
+\begin{itemize}
+\item Las estructuras mantienen separados los datos de las operaciones.
+
+\item Por defecto los miembros de una estructura son de acceso público.
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Clases}
+\begin{itemize}
+\item Las clases agrupan los datos y las operaciones sobre estos.
+
+\item Esto permite proteger los datos y las operaciones de los usuarios.
+
+\item Por defecto los miembros de una clase son de acceso privado.
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgb49dba8}]{Estructuras}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+struct Image
+{
+	int     nrows, ncols; // Number of rows and columns.
+	int**   pixels;       // Pointer to image pixels.
+};
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:org8b4cada}]{Clases}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class Image
+{
+ public:
+  Image();
+  Image(int n, int m, int g); // Fills pixels n x m with g value
+  Image(const Image& I);      // Copy Constructor
+  ~Image() ;                  // Destructor
+
+  const Image& operator= (const Image&); // Assign operator
+
+  int  getNrows();  // Rows
+  int  getNcols();  // Columns
+  int  getGray(int x, int y) const;  // Gray pixel value (x,y).
+  void setGray(int x, int y, int g); // Set pixel value (x,y).
+
+	[...]
+};
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:org7afa109}]{Clases}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class Image
+{
+  [...]
+
+ private:
+  int nrows, ncols; // Number of rows and columns.
+  int **pixels;     // Pointer to image pixels.
+
+  void reserveMemory();       // Reserves memory.
+  void copy (const Image& I); // Copy I image over current image.
+  void freeMemory();          // Frees memory.
+};
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgbe40a5d}]{Uniones}
+ \begin{block}{Unión}
+Es una estructura en la que sus elementos ocupan la misma posición de memoria.
+
+Solo se puede escoger uno de los elementos a la vez.
+\note{variant
+La solución a los errores derivado del colapso de direcciones de
+memoria de los elementos es mejor usar \texttt{variant}.}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgffe13c6}]{Uniones}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+union Pixel
+{
+	RGB p;
+	int gray;
+};
+struct Image
+{
+	int       nrows, ncols; // Number of rows and columns.
+	Pixel**   pixels;       // Pointer to image pixels.
+	Image();
+};
+[...]
+Image im;
+im.pixels[5][5].p.r = 180;
+im.pixels[5][5].p.g = 50;
+im.pixels[5][5].p.b = 190;
+	
+im.pixels[5][6].gray = 250;
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:org4419b2f}]{Enumeraciones}
+ \begin{block}{Enum}
+Permite definir un conjunto de valores que enumeran una cualidad.
+
+Por ejemplo podemos definir color como rojo, verde y azul.
+\end{block}
+\begin{block}{}
+\begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+enum color {rojo,verde, azul};
+\end{minted}
+\note{Colisión de nombres
+Ejemplo que muestra que ocurre cuando el nombre de un elemento está
+presente en 2 enumeraciones.
+
+Solución: enumName::enumElem.}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgc422b02}]{Enumeraciones}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+enum ImageType {grayscale, color};
+[...]
+int main()
+{
+	Image im{color};
+
+	if (im.type == color)
+	{
+		im.pixels[5][5].p.r = 180;
+		im.pixels[5][5].p.g = 50;
+		im.pixels[5][5].p.b = 190;
+	}
+	else
+	{
+		im.pixels[5][5].gray = 250;
+	}
+}
+\end{minted}
+\end{frame}
+
+\section{Modularidad}
+\label{sec:orgf01311c}
+\begin{frame}[label={sec:orgca7efe3}]{Modularidad}
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Programa C++}
+Formado por diferentes partes separadas entre sí.
+\begin{itemize}
+\item Interfaz
+\item Implementación
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label={sec:org62feb8f}]{Modularidad}
+ \begin{block}{Interfaces}
+Se suelen definir en los archivos de cabecera con extensión \texttt{.h}
+
+Representan las declaraciones que contienen todo lo
+necesario para usar una función o tipo.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:org9238554}]{}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class Image
+{
+	int nrows, ncols; // Number of rows and columns.
+  int **pixels;     // Pointer to image pixels.
+
+  void reserveMemory();       // Reserves memory.
+  void copy (const Image& I); // Copy I image over current image.
+  void freeMemory();          // Frees memory.
+
+ public:
+  Image();
+  Image(int n, int m, int g); // Fills pixels n x m with g value
+  Image(const Image& I);      // Copy Constructor
+  ~Image();                   // Destructor
+
+  const Image& operator= (const Image&); // Assign operator
+
+  int  getNrows();  // Rows
+  int  getNcols();  // Columns
+  int  getGray(int x, int y) const;  // Gray pixel value (x,y).
+  void setGray(int x, int y, int g); // Set pixel value (x,y).
+
+	Image operator+ (const Image& I); //Add Images
+  Image operator- (const Image& I); //Sub Images
+  Image operator! ();   // Invierte la Image
+};
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgd221c69}]{Modularidad}
+ \begin{block}{Implementación}
+Se definen en uno o varios ficheros con extensión \texttt{.cpp}
+
+Representan las definiciones de los tipos o funciones.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:org176f18c}]{Implementación}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+#include<imageInterface.h>
+using namespace std;
+	
+Image::Image(int rows, int cols, int g)
+{
+	nrows = rows;
+	ncols = cols;
+	
+	pixels = new int*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		pixels[i] = new int[cols];
+
+		for (int j = 0; j < cols; j++)
+		{
+			pixels[i][j] = g;
+		}
+	}
+}
+\end{minted}
+\end{frame}
+\begin{frame}[label={sec:orgb473423}]{Modularidad}
+\begin{block}{Compilación separada}
+\begin{itemize}
+\item Los fichero .cpp se compilan por separado generando fichero objeto
+(.o o .obj).
+\item Esta compilación separada permite modificar una clase sin necesidad
+de recompilar el programa entero.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgc7e54bd}]{Compilación separada}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+// imageModule.cpp
+
+#include<imageInterface.h>
+
+using namespace std;
+
+int main()
+{
+  Image im{10,10,200};
+    
+  cout << "imageImplementation is finnished." << endl;
+}
+\end{minted}
+\end{frame}
+\begin{frame}[label={sec:org7cbe22b}]{Compilación separada}
+\begin{alertblock}{¡Atención!}
+\begin{itemize}
+\item Un cambio en un fichero de implementación .cpp implicará recompilar
+el fichero y realizar el enlazado.
+\item Un cambio en un fichero de interfaz .h implicará recompilar todos
+los ficheros .cpp que la incluyen.
+\end{itemize}
+\note{variant
+\begin{itemize}
+\item Preparar una imagen con unos ladrillos que representan el código
+objeto resultado del compilador y la argamasa que es la unión de los
+diferentes bloques que realiza el enlazador (linker).
+\item La imagen de base ya está en la carpeta img.
+\end{itemize}}
+\end{alertblock}
+\end{frame}
+\begin{frame}[label={sec:org43dae41}]{Modularidad}
+\begin{columns}
+\begin{column}{0.28\columnwidth}
+\begin{block}{Namespaces}
+\begin{itemize}
+\item Ofrecen un nivel superior de organización al de las clases y las
+enumeraciones.
+\item Permiten evitar conflictos de nombres.
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\columnwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./img/namespaces.png}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,label={sec:org9484535}]{Namespaces}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+namespace gray
+{
+	class Image
+	{
+		int nrows, ncols; // Number of rows and columns.
+		int **pixels;     // Pointer to image pixels.
+		
+		void reserveMemory();       // Reserves memory.
+		void copy (const Image& I); // Copy I image over current image.
+		void freeMemory();          // Frees memory.
+		
+	public:
+		Image();
+		Image(int n, int m, int g); // Fills pixels n x m with g value
+}
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgf479af5}]{Namespaces}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+namespace rgb
+{
+	struct RGB
+	{
+		int r,g,b;
+	};
+		
+	class Image
+	{
+		int nrows, ncols; // Number of rows and columns.
+		RGB **pixels;     // Pointer to image pixels.
+		
+		void reserveMemory();       // Reserves memory.
+		void copy (const Image& I); // Copy I image over current image.
+		void freeMemory();          // Frees memory.
+		
+	public:
+		Image();
+		Image(int n, int m, int r, int g, int b); // Fills pixels n x m with rgb value
+}
+\end{minted}
+\end{frame}
+\begin{frame}[fragile,label={sec:org4fddc45}]{Namespaces}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+gray::Image::Image(int rows, int cols, int g)
+{
+ [...]
+}
+rgb::Image::Image(int rows, int cols, int r, int g, int b)
+{
+ [...]
+}
+\end{minted}
+\end{frame}
+
+\section{Gestión de memoria}
+\label{sec:org27ed697}
+\begin{frame}[label={sec:org6273eec}]{Gestión de memoria}
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{itemize}
+\item C++ hereda de C un control fino de la memoria dinámica usada por el programa.
+\item El sistema operativo divide la memoria de programa en bloques.
+\end{itemize}
+\end{column}
+\begin{column}{0.28\columnwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./img/heap-stack-color.png}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label={sec:orged1c683}]{Gestión de memoria}
+ \begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Memoria de programa}
+\begin{itemize}
+\item Code (Text): Área para el código máquina del programa.
+\item Static/Global: Área para las variables globales del programa.
+\item Stack: Área para las variables locales y la pila de programa.
+\begin{itemize}
+\item El tamaño de esta área es fijo, si se supera se produce el error
+\end{itemize}
+\texttt{Stack Overflow}.
+\item Heap (Free Store): Área de memoria dinámica.
+\begin{itemize}
+\item El tamaño de esta área es virtualmente la memoria del equipo.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.28\columnwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./img/heap-stack-color.png}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label={sec:org38c4b57}]{Gestión de memoria dinámica}
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Herencia de C}
+\begin{itemize}
+\item malloc
+\item free
+\item calloc
+\item realloc
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\columnwidth}
+\begin{block}{C++}
+\begin{itemize}
+\item new
+\item delete
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgb4780ef}]{Gestión de memoria dinámica}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+Pixel**   pixels;       // Pointer to image pixels.
+
+pixels = new Pixel*[rows];
+for (int i=0;i<10;i++)
+{
+	pixels[i] = new Pixel[cols];
+}		
+
+int * copy;
+
+copy = (int*)malloc(im.nrows*im.ncols*sizeof(int));
+\end{minted}
+\end{frame}
+\section{Clases}
+\label{sec:org51b1dfe}
+\begin{frame}[label={sec:orgab70f1b}]{Clases}
+\begin{block}{Definición}
+Tipo definido por el usario para representar un concepto.
+\end{block}
+\begin{block}{Principales cualidades}
+\begin{itemize}
+\item Agrupan los datos y las operaciones sobre estos.
+\item Proteger los datos y las operaciones de usuarios maintencionados.
+\begin{itemize}
+\item Por defecto, sus miembros son de acceso privado.
+\end{itemize}
+\item Permiten sobrecargar las operaciones para diferente dato de entrada.
+\item Permiten derivar typos más complejos que heredan sus características básicas.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org2a3c745}]{Clases}
+\begin{block}{Tipos de clases}
+\begin{itemize}
+\item Clases concretas
+\item Clases abstractas
+\item Clases en las jerarquía de clases
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org479ec46}]{Clases concretas (Tipos concretos)}
+\begin{itemize}
+\item En C++ todo son clases por ser un lenguaje orientado a objetos.
+\item Las clases concretas son similires a los tipos básicos suministrados por las librerías básicas de C++.
+\item Su representación es parte de su definición, lo que permite que las implementaciones sean eficientes en tiempo y espacio.
+\end{itemize}
+\begin{block}{Características}
+\begin{itemize}
+\item Instancia sus datos en la memoria estática (stack).
+\item No usa punteros.
+\item Inicializa automáticamente los objetos.
+\item Copia y muebe objetos.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgb8c6040}]{}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+// pixel.h
+#include<stdio.h>
+#include <iostream>
+
+using namespace std;
+
+namespace rgb
+{
+	class Pixel
+	{
+		int r,g,b; // Pixel components.
+	public:		
+		Pixel(){
+			r = g = b = 0;
+		}
+		
+		Pixel(int r, int g, int b){ // Fills pixel with rgb value.
+			this->r = r;
+			this->g = g;
+			this->b = b;
+		}
+				
+		Pixel operator+(const Pixel& p){ // Add 2 Pixels.
+			Pixel res;
+			res.r = r + p.r; // Add pixel components
+			res.g = g + p.g;
+			res.b = b + p.b;
+			return res; // and return the result.
+		}
+
+		int getR() const { return r;}
+		int getG() const { return g;}
+		int getB() const { return b;}
+	};
+}
+\end{minted}
+\end{frame}
+\begin{frame}[label={sec:org80d44f8}]{Clases Abstractas (Tipos Abstractos)}
+\begin{itemize}
+\item En C++ todo son clases por ser un lenguaje orientado a objetos.
+\item Las clases abstractas o tipos abstractos aislan completamente el
+usuario de los detalles de implementación.
+\item Las clases abstractas definen interfaces.
+\end{itemize}
+\begin{block}{Características}
+\begin{itemize}
+\item No puede contener variables de clase.
+\item Instancia sus datos en la memoria dinámica (free store).
+\item Está compuesta por métodos abstractos.
+\begin{itemize}
+\item Una clase deribada debe implementar los métodos abstractos de su clase padre.
+\end{itemize}
+\item No se puede instanciar un objeto de un tipo abstracto.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:org81ec1a5}]{}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class AbstractPixel
+{
+public:
+	virtual void set(int value) = 0; // Pure virtual.
+};
+
+class AbstractImage
+{
+public:
+	virtual AbstractPixel& getPixel(int x, int y) = 0; // Pure virtual.
+	virtual void setPixel(int x, int y, const AbstractPixel& pixel) = 0; // Pure virtual.
+	virtual int getRows() = 0; // Pure virtual.
+	virtual int getCols() = 0; // Pure virtual.
+};
+
+class AbstractImageOperations
+{
+public:
+	virtual void filter(const AbstractImage& image) = 0;// Pure virtual.
+};
+\end{minted}
+\note{Ejemplo
+Clase ImageAbstract}
+\end{frame}
+\begin{frame}[label={sec:org1327eac}]{Jerarquía de Clases}
+Las clases pueden tomar funcionalidades de otras clase por medio de la herencia.
+\begin{block}{Tipos de Herencia}
+\begin{itemize}
+\item Simple
+\begin{itemize}
+\item Se hereda la funcionalidad de una única clase.
+\end{itemize}
+\item Múltiple
+\begin{itemize}
+\item Se heredan las funcionalidades de múltiples clases.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgd948008}]{}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class Pixel : public AbstractPixel
+{
+	int r,g,b; // Pixel components.
+public:		
+	Pixel(){
+		r = g = b = 0;
+	}
+			
+	Pixel(int r, int g, int b){ // Fills pixel with rgb value.
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
+
+	void set(int value) override{ // Implement AbstractPixel interface.
+		r = g = b = value;
+	}
+
+	void set(int r, int g, int b){
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
+			
+	Pixel operator+(const Pixel& p){ // Add 2 Pixels.
+		Pixel res;
+		res.r = r + p.r; // Add pixel components
+		res.g = g + p.g;
+		res.b = b + p.b;
+		return res; // and return the result.
+	}
+
+	int getR() const { return r;}
+	int getG() const { return g;}
+	int getB() const { return b;}
+};
+\end{minted}
+\note{Ejemplo
+Clase Image hereda de ImageAbstract}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgf123f57}]{}
+ \begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class Image : public AbstractImage, public AbstractImageOperations
+{
+	int rows, cols;
+	Pixel **pixels;
+public:
+	Image();
+	Image(int n, int m, int r, int g, int b); // Fills pixels n x m with rgb value
+	Image(const Image& I);      // Copy Constructor
+	~Image();                   // Destructor
+	
+	const Image& operator= (const Image&); // Assign operator
+	
+	int  getNrows();  // Rows
+	int  getNcols();  // Columns
+	
+	Image operator+ (const Image& I); //Add Images
+	Image operator- (const Image& I); //Sub Images
+	Image operator! ();   // Invierte la Image
+	
+	// AbstractImage methods.
+	AbstractPixel& getPixel(int x, int y) override;
+	void setPixel(int x, int y, const AbstractPixel& pixel) override;
+	int getRows() override{
+		return rows;
+	}
+	int getCols() override{
+		return cols;
+	}
+	
+	// AbstractImageOperations methods
+	void filter(const AbstractImage& image) override;
+};
+\end{minted}
+\note{Ejemplo
+Clase Image hereda de ImageAbstract e ImageRGB
+Pequeño diagrama de herencia como el del libro.}
+\end{frame}
+\begin{frame}[fragile,label={sec:orge65316b}]{Funciones Virtuales y Virtuales Puras.}
+ \begin{block}{Virtuales}
+\begin{itemize}
+\item Permite el poliformismo
+\item Se definen en la clase base y se pueden redefinir en las clases derivadas.
+\end{itemize}
+\end{block}
+\begin{block}{Virtuales puras}
+\begin{itemize}
+\item Se declaran en la clase base y se marcan con = 0.
+\item Es obligatoria la definición en las clases derivadas.
+\end{itemize}
+\end{block}
+\begin{block}{}
+\begin{minted}[breaklines,fontsize=\small,tabsize=2,frame=lines,autogobble]{c++}
+class AbstractImage
+{
+public:
+	virtual AbstractPixel& getPixel(int x, int y) = 0; // Pure virtual.
+	virtual void setPixel(int x, int y, const AbstractPixel& pixel) = 0; // Pure virtual.
+	virtual int getRows() = 0; // Pure virtual.
+	virtual int getCols() = 0; // Pure virtual.
+};
+\end{minted}
+\end{block}
+\end{frame}
+\section{Operaciones esenciales}
+\label{sec:org35de827}
+\begin{frame}[label={sec:org700a156}]{Operaciones esenciales}
+\end{frame}
+\section{Librería estándar}
+\label{sec:orgc688bfd}
+\begin{frame}[label={sec:org66c18f2}]{Librería estándar}
+\end{frame}
+\section{Uso de lambdas}
+\label{sec:orgac0d007}
+\begin{frame}[label={sec:org839e145}]{Uso de lambdas}
+\end{frame}
+\section{Programación genérica}
+\label{sec:orgcf79d96}
+\begin{frame}[label={sec:org0a81ff3}]{Programación genérica}
+\end{frame}
+\section{Conclusiones}
+\label{sec:orgfdee269}
+\begin{frame}[label={sec:org4a0537e}]{Conclusiones}
+\end{frame}
+\section{Proyecto}
+\label{sec:org1742f10}
+\begin{frame}[label={sec:org09cb6a6}]{Proyecto}
+\begin{block}{Editor de imágenes}
+\begin{itemize}
+\item Incrustar imagen en otra
+\item Fundir imagen con otra
+\item Eliminar objetos de una imagen
+\item Extraer un trozo de una imagen
+\end{itemize}
+\end{block}
+\end{frame}
+\section{}
+\label{sec:orgd4b6869}
+\begin{frame}[label={sec:org33d5997}]{}
+\end{frame}
+\begin{frame}[label={sec:orgb83eaa4}]{Other stuff}
+\begin{columns}
+\begin{column}{0.48\columnwidth}
+\begin{block}{Gracias a Gustavo Puche}
+for the first viable Beamer setup in Org
+\end{block}
+\end{column}
+\begin{column}{0.48\columnwidth}
+\begin{block}<2->{Gracias a alguien más}
+for contributing to the discussion
+\note{This will be formatted as a beamer note
+}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label={sec:org05c4ca4}]{Frame 2 (where we will not use columns)}
+\begin{block}{Request}
+Please test this stuff!
+\end{block}
+
+\begin{columns}
+\begin{column}{0.4\columnwidth}
+\begin{block}{Círculo}
+\begin{tikzpicture}
+\draw (4,4) circle(2cm);
+\end{tikzpicture}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

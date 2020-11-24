@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gustavo/Documents/Work/courses/basic-c++/examples/classes/abstractClassesAndIneritance/AbstractInheritanceMain.cpp
+abstractAndInheritance.h
+-
+
+/home/gustavo/Documents/Work/courses/basic-c++/examples/classes/abstractClassesAndIneritance/abstractAndInheritance.cpp
+abstractAndInheritance.h
+-
+
+classes/abstractClassesAndIneritance/include/abstractAndInheritance.h
+stdio.h
+-
+iostream
+-
+

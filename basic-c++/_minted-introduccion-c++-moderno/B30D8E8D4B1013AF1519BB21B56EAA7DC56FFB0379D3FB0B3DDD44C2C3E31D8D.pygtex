@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{gray}\PYG{o}{::}\PYG{n}{Image}\PYG{o}{::}\PYG{n}{Image}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{rows}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{cols}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+ \PYG{p}{[...]}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{rgb}\PYG{o}{::}\PYG{n}{Image}\PYG{o}{::}\PYG{n}{Image}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{rows}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{cols}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+ \PYG{p}{[...]}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

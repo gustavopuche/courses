@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/trial.dir/trial.cpp.o -o trial 

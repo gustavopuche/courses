@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{enum} \PYG{n}{ImageType} \PYG{p}{\PYGZob{}}\PYG{n}{grayscale}\PYG{p}{,} \PYG{n}{color}\PYG{p}{\PYGZcb{};}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{Image} \PYG{n}{im}\PYG{p}{\PYGZob{}}\PYG{n}{color}\PYG{p}{\PYGZcb{};}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{im}\PYG{p}{.}\PYG{n}{type} \PYG{o}{==} \PYG{n}{color}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{r} \PYG{o}{=} \PYG{l+m+mi}{180}\PYG{p}{;}
+		\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{g} \PYG{o}{=} \PYG{l+m+mi}{50}\PYG{p}{;}
+		\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{p}\PYG{p}{.}\PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{190}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{im}\PYG{p}{.}\PYG{n}{pixels}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{][}\PYG{l+m+mi}{5}\PYG{p}{].}\PYG{n}{gray} \PYG{o}{=} \PYG{l+m+mi}{250}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// pixel.h}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n}{rgb}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{class} \PYG{n+nc}{Pixel}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,}\PYG{n}{g}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;} \PYG{c+c1}{// Pixel components.}
+	\PYG{k}{public}\PYG{o}{:}
+		\PYG{n}{Pixel}\PYG{p}{()\PYGZob{}}
+			\PYG{n}{r} \PYG{o}{=} \PYG{n}{g} \PYG{o}{=} \PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{n}{Pixel}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{// Fills pixel with rgb value.}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{p}{;}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{g} \PYG{o}{=} \PYG{n}{g}\PYG{p}{;}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{b} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{n}{Pixel} \PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Pixel}\PYG{o}{\PYGZam{}} \PYG{n}{p}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{// Add 2 Pixels.}
+			\PYG{n}{Pixel} \PYG{n}{res}\PYG{p}{;}
+			\PYG{n}{res}\PYG{p}{.}\PYG{n}{r} \PYG{o}{=} \PYG{n}{r} \PYG{o}{+} \PYG{n}{p}\PYG{p}{.}\PYG{n}{r}\PYG{p}{;} \PYG{c+c1}{// Add pixel components}
+			\PYG{n}{res}\PYG{p}{.}\PYG{n}{g} \PYG{o}{=} \PYG{n}{g} \PYG{o}{+} \PYG{n}{p}\PYG{p}{.}\PYG{n}{g}\PYG{p}{;}
+			\PYG{n}{res}\PYG{p}{.}\PYG{n}{b} \PYG{o}{=} \PYG{n}{b} \PYG{o}{+} \PYG{n}{p}\PYG{p}{.}\PYG{n}{b}\PYG{p}{;}
+			\PYG{k}{return} \PYG{n}{res}\PYG{p}{;} \PYG{c+c1}{// and return the result.}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{k+kt}{int} \PYG{n}{getR}\PYG{p}{()} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{r}\PYG{p}{;\PYGZcb{}}
+		\PYG{k+kt}{int} \PYG{n}{getG}\PYG{p}{()} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{g}\PYG{p}{;\PYGZcb{}}
+		\PYG{k+kt}{int} \PYG{n}{getB}\PYG{p}{()} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{b}\PYG{p}{;\PYGZcb{}}
+	\PYG{p}{\PYGZcb{};}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

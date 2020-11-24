@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Imagen}
+\PYG{p}{\PYGZob{}}
+ \PYG{k}{public}\PYG{o}{:}
+  \PYG{n}{Imagen}\PYG{p}{();}
+  \PYG{n}{Imagen}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{);} \PYG{c+c1}{//Rellena los puntos de la imagen de tamaño n x m con el valor g}
+  \PYG{n}{Imagen}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{//Constructor copia}
+  \PYG{o}{\PYGZti{}}\PYG{n}{Imagen}\PYG{p}{()} \PYG{p}{;} \PYG{c+c1}{// Destructor}
+
+  \PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{=} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}}\PYG{p}{);} \PYG{c+c1}{// Operador de asignación}
+
+  \PYG{k+kt}{int}  \PYG{n+nf}{getNfilas}\PYG{p}{();} \PYG{c+c1}{// num. de filas de la imagen}
+  \PYG{k+kt}{int}  \PYG{n+nf}{getNcols}\PYG{p}{();}  \PYG{c+c1}{// num. de columnas de la imagen}
+  \PYG{k+kt}{int}  \PYG{n+nf}{ObtenGris}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;} \PYG{c+c1}{//valor de gris del pto. (x,y)}
+  \PYG{k+kt}{void} \PYG{n+nf}{PonGris}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{);} \PYG{c+c1}{//pone el valor g en el pto (x,y).}
+
+  \PYG{n}{Imagen} \PYG{k}{operator}\PYG{o}{+} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{//suma de imagenes}
+  \PYG{n}{Imagen} \PYG{k}{operator}\PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{//resta de imagenes}
+  \PYG{n}{Imagen} \PYG{k}{operator}\PYG{o}{!} \PYG{p}{();}   \PYG{c+c1}{// Invierte la imagen}
+
+  \PYG{k}{friend} \PYG{n}{ostream} \PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{(}\PYG{n}{ostream} \PYG{o}{\PYGZam{}}\PYG{n}{os}\PYG{p}{,} \PYG{n}{Imagen} \PYG{o}{\PYGZam{}}\PYG{n}{imag}\PYG{p}{);}  \PYG{c+c1}{// Para escribir una imagen en un archivo}
+  \PYG{k}{friend} \PYG{n}{istream} \PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{p}{(}\PYG{n}{istream} \PYG{o}{\PYGZam{}}\PYG{n}{is}\PYG{p}{,} \PYG{n}{Imagen} \PYG{o}{\PYGZam{}}\PYG{n}{imag}\PYG{p}{);}  \PYG{c+c1}{// Para leer una imagen desde archivo.}
+
+ \PYG{k}{private}\PYG{o}{:}
+  \PYG{k+kt}{int} \PYG{n}{nfilas}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{//num. filas y columnas}
+  \PYG{k+kt}{int} \PYG{o}{**}\PYG{n}{valores}\PYG{p}{;}  \PYG{c+c1}{//para almacenar la matriz de puntos de la imagen}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{reservar}\PYG{p}{();} \PYG{c+c1}{// Reserva memoria para la matriz de puntos.}
+  \PYG{k+kt}{void} \PYG{n+nf}{copiar} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Imagen}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{// Copia la imagen I sobre la imagen actual.}
+  \PYG{k+kt}{void} \PYG{n+nf}{borrar}\PYG{p}{();} \PYG{c+c1}{// Libera el espacio reservado para la matriz de puntos.}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

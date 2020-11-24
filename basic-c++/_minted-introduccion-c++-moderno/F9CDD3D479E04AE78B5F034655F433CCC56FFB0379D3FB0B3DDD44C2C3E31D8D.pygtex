@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Image}
+\PYG{p}{\PYGZob{}}
+  \PYG{p}{[...]}
+
+ \PYG{k}{private}\PYG{o}{:}
+  \PYG{k+kt}{int} \PYG{n}{nrows}\PYG{p}{,} \PYG{n}{ncols}\PYG{p}{;} \PYG{c+c1}{//num. rows y columnas}
+  \PYG{k+kt}{int} \PYG{o}{**}\PYG{n}{valores}\PYG{p}{;}  \PYG{c+c1}{//para almacenar la matriz de puntos de la Image}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{reservar}\PYG{p}{();} \PYG{c+c1}{// Reserva memoria para la matriz de puntos.}
+  \PYG{k+kt}{void} \PYG{n+nf}{copiar} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{// Copia la Image I sobre la Image actual.}
+  \PYG{k+kt}{void} \PYG{n+nf}{borrar}\PYG{p}{();} \PYG{c+c1}{// Libera el espacio reservado para la matriz de puntos.}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

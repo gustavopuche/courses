@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{AbstractImage}
+\PYG{p}{\PYGZob{}}
+\PYG{k}{public}\PYG{o}{:}
+	\PYG{k}{virtual} \PYG{n}{AbstractPixel}\PYG{o}{\PYGZam{}} \PYG{n}{getPixel}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// Pure virtual.}
+	\PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n+nf}{setPixel}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k}{const} \PYG{n}{AbstractPixel}\PYG{o}{\PYGZam{}} \PYG{n}{pixel}\PYG{p}{)} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// Pure virtual.}
+	\PYG{k}{virtual} \PYG{k+kt}{int} \PYG{n+nf}{getRows}\PYG{p}{()} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// Pure virtual.}
+	\PYG{k}{virtual} \PYG{k+kt}{int} \PYG{n+nf}{getCols}\PYG{p}{()} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// Pure virtual.}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

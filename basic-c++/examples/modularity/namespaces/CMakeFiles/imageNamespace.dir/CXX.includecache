@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gustavo/Documents/Work/courses/basic-c++/examples/modularity/namespaces/imageModule.cpp
+imageNamespace.h
+-
+
+/home/gustavo/Documents/Work/courses/basic-c++/examples/modularity/namespaces/imageNamespace.cpp
+imageNamespace.h
+-
+
+modularity/namespaces/include/imageNamespace.h
+stdio.h
+-
+iostream
+-
+

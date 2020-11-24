@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Image} \PYG{o}{:} \PYG{k}{public} \PYG{n}{AbstractImage}\PYG{p}{,} \PYG{k}{public} \PYG{n}{AbstractImageOperations}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{rows}\PYG{p}{,} \PYG{n}{cols}\PYG{p}{;}
+	\PYG{n}{Pixel} \PYG{o}{**}\PYG{n}{pixels}\PYG{p}{;}
+\PYG{k}{public}\PYG{o}{:}
+	\PYG{n}{Image}\PYG{p}{();}
+	\PYG{n}{Image}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{g}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{);} \PYG{c+c1}{// Fills pixels n x m with rgb value}
+	\PYG{n}{Image}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);}      \PYG{c+c1}{// Copy Constructor}
+	\PYG{o}{\PYGZti{}}\PYG{n}{Image}\PYG{p}{();}                   \PYG{c+c1}{// Destructor}
+
+	\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{=} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}}\PYG{p}{);} \PYG{c+c1}{// Assign operator}
+
+	\PYG{k+kt}{int}  \PYG{n+nf}{getNrows}\PYG{p}{();}  \PYG{c+c1}{// Rows}
+	\PYG{k+kt}{int}  \PYG{n+nf}{getNcols}\PYG{p}{();}  \PYG{c+c1}{// Columns}
+
+	\PYG{n}{Image} \PYG{k}{operator}\PYG{o}{+} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{//Add Images}
+	\PYG{n}{Image} \PYG{k}{operator}\PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Image}\PYG{o}{\PYGZam{}} \PYG{n}{I}\PYG{p}{);} \PYG{c+c1}{//Sub Images}
+	\PYG{n}{Image} \PYG{k}{operator}\PYG{o}{!} \PYG{p}{();}   \PYG{c+c1}{// Invierte la Image}
+
+	\PYG{c+c1}{// AbstractImage methods.}
+	\PYG{n}{AbstractPixel}\PYG{o}{\PYGZam{}} \PYG{n}{getPixel}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;}
+	\PYG{k+kt}{void} \PYG{n+nf}{setPixel}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k}{const} \PYG{n}{AbstractPixel}\PYG{o}{\PYGZam{}} \PYG{n}{pixel}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n+nf}{getRows}\PYG{p}{()} \PYG{k}{override}\PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{rows}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n+nf}{getCols}\PYG{p}{()} \PYG{k}{override}\PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{cols}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// AbstractImageOperations methods}
+	\PYG{k+kt}{void} \PYG{n+nf}{filter}\PYG{p}{(}\PYG{k}{const} \PYG{n}{AbstractImage}\PYG{o}{\PYGZam{}} \PYG{n}{image}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}
